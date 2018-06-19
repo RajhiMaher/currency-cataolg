@@ -1,0 +1,40 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+        <h1 style="font-size: 3em; color: #0000ff7d;">
+           {{ title }}
+        </h1>
+</div>
+
+<p-dataView #dv [value]="currencies" [paginator]="true"  paginatorPosition="both"[rows]="6" paginatorPosition="both" filterBy="id"
+[sortField]="sortField" [sortOrder]="sortOrder">
+        <p-header>
+                <div class="ui-helper-clearfix">
+                    <div class="ui-g">
+                        <div class="ui-g-12 ui-md-4">
+                             <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Filtrer par" (onChange)="onSortChange($event)" [autoWidth]="false" [style]="{'min-width':'15em'}"></p-dropdown>
+                        </div>
+                        <div class="ui-g-6 ui-md-4 filter-container">
+                            <div style="position:relative">
+                                <input type="search" pInputText placeholder="Rechercher" (keyup)="dv.filter($event.target.value, dv)">
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </p-header>
+     <ng-template let-currency pTemplate="gridItem">
+        <div style="padding:.5em" class="ui-g-12 ui-md-3">
+            <p-panel [header]="currency.id" [style]="{'text-align':'center'}">
+                <div ><button routerLinkActive="active" [routerLink]="['/currency', currency.id]">ID : {{currency.id}} Type : {{currency.attributes.currency_type}} Symbole : {{currency.attributes.symbol}}</button></div>
+            </p-panel>
+        </div>
+    </ng-template>
+     <ng-template let-currency pTemplate="gridItem">
+        <div style="padding:.5em" class="ui-g-12 ui-md-4">
+            <p-panel [header]="currency.id" [style]="{'text-align':'center'}">
+                <div ><button (click)="showDetail($event, currency)" routerLinkActive="active" [routerLink]="['/currency', currency.id]">ID : {{currency.id}} Type : {{currency.attributes.currency_type}} Symbole : {{currency.attributes.symbol}}</button></div>
+            </p-panel>
+        </div>
+    </ng-template>
+</p-dataView>
+<router-outlet></router-outlet>

@@ -1,0 +1,21 @@
+<div style="text-align:left">
+    <h1 style="font-size: 3em;color: #0000ff7d;">
+        {{ id }}
+    </h1>
+</div>
+
+<div *ngIf="currency">
+    <div>
+        <label>. Code : </label>{{ currency.attributes.code }}</div>
+    <div>
+        <label>. Nom : </label>{{ currency.attributes.name}}</div>
+    <div>
+        <label>. Type : </label>{{ currency.attributes.currency_type }}</div>
+    <div>
+        <label>. Symbole : </label>{{ currency.attributes.symbole }}</div>
+        <div>
+                <label>. Code iso numeric 3 : </label>{{ currency.attributes.code_iso_numeric3 }}</div>
+                <div>
+                        <label>. Code iso alpha 3: </label>{{ currency.attributes.code_iso_alpha3 }}</div>
+</div>
+<router-outlet></router-outlet>
